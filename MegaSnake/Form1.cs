@@ -52,6 +52,7 @@ namespace MegaSnake
         {
             const int CellSize = 20;
 
+
             for (int i = 0; i <= GameFieldSize; i++)
             {
                 e.Graphics.DrawLine(Pens.Black, i * CellSize, 0, i * CellSize, GameFieldSize * CellSize);
@@ -86,8 +87,8 @@ namespace MegaSnake
 
             if (snakeHead.Y < 0 ||
                 snakeHead.X < 0 ||
-                snakeHead.Y > GameFieldSize - 1 ||
-                snakeHead.X > GameFieldSize - 1)
+                snakeHead.Y >= GameFieldSize ||
+                snakeHead.X >= GameFieldSize)
             {
                 Defeat();
             }
