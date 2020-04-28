@@ -1,0 +1,10 @@
+C:\Users\User\source\repos\MegaSnake\bin\Debug\MegaSnake.exe.config
+C:\Users\User\source\repos\MegaSnake\bin\Debug\MegaSnake.exe
+C:\Users\User\source\repos\MegaSnake\bin\Debug\MegaSnake.pdb
+C:\Users\User\source\repos\MegaSnake\obj\Debug\MegaSnake.csprojAssemblyReference.cache
+C:\Users\User\source\repos\MegaSnake\obj\Debug\MegaSnake.Form1.resources
+C:\Users\User\source\repos\MegaSnake\obj\Debug\MegaSnake.Properties.Resources.resources
+C:\Users\User\source\repos\MegaSnake\obj\Debug\MegaSnake.csproj.GenerateResource.cache
+C:\Users\User\source\repos\MegaSnake\obj\Debug\MegaSnake.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\MegaSnake\obj\Debug\MegaSnake.exe
+C:\Users\User\source\repos\MegaSnake\obj\Debug\MegaSnake.pdb
