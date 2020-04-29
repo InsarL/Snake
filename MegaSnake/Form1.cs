@@ -104,7 +104,11 @@ namespace MegaSnake
                 {
                     Defeat();
                 }
+            }
+            for (int i = 0; i < snakeBodyParts.Count; i++)
+            {
 
+            
                 if (apple == snakeBodyParts[i])
                 {
                     apple.X = random.Next(0, GameFieldSize);
