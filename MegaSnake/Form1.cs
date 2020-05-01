@@ -19,19 +19,19 @@ namespace MegaSnake
         Keys snakeDirection;
         List<Point> snakeBodyParts;
 
+
         public Form1()
         {
             InitializeComponent();
             random = new Random();
-            snakeHead = new Point(GameFieldSize / 2, GameFieldSize / 2);
-            apple = new Point(random.Next(0, GameFieldSize), random.Next(0, GameFieldSize));
-            snakeDirection = Keys.A;
             snakeBodyParts = new List<Point>();
-            snakeBodyParts.Add(snakeHead);
+            Restart();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+
+
             if (snakeBodyParts.Count > 0)
             {
                 if (e.KeyCode == Keys.Down && snakeDirection == Keys.Up)
@@ -44,20 +44,16 @@ namespace MegaSnake
                     return;
             }
 
-
             if (e.KeyCode == Keys.Down ||
                 e.KeyCode == Keys.Up ||
                 e.KeyCode == Keys.Right ||
                 e.KeyCode == Keys.Left)
-
                 snakeDirection = e.KeyCode;
-
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             const int CellSize = 20;
-
 
             for (int i = 0; i <= GameFieldSize; i++)
             {
@@ -68,13 +64,13 @@ namespace MegaSnake
             foreach (Point bodyPart in snakeBodyParts)
                 e.Graphics.FillRectangle(Brushes.Green, bodyPart.X * CellSize, bodyPart.Y * CellSize, CellSize, CellSize);
 
-
             e.Graphics.FillRectangle(Brushes.Chocolate, apple.X * CellSize, apple.Y * CellSize, CellSize, CellSize);
             e.Graphics.FillRectangle(Brushes.Red, snakeHead.X * CellSize, snakeHead.Y * CellSize, CellSize, CellSize);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
 
             if (snakeDirection == Keys.Up)
                 snakeHead.Y--;
@@ -91,9 +87,9 @@ namespace MegaSnake
 
 
             if (snakeHead.Y < 0 ||
-            snakeHead.X < 0 ||
-            snakeHead.Y >= GameFieldSize ||
-            snakeHead.X >= GameFieldSize)
+                snakeHead.X < 0 ||
+                snakeHead.Y >= GameFieldSize ||
+                snakeHead.X >= GameFieldSize)
             {
                 Defeat();
             }
@@ -105,43 +101,39 @@ namespace MegaSnake
                     Defeat();
                 }
             }
-            for (int i = 0; i < snakeBodyParts.Count; i++)
-            {
-
-            
-                if (apple == snakeBodyParts[i])
-                {
-                    apple.X = random.Next(0, GameFieldSize);
-                    apple.Y = random.Next(0, GameFieldSize);
-                }
-            }
 
             if (snakeHead == apple)
             {
-                snakeBodyParts.Insert(0, snakeHead);
-                apple.X = random.Next(0, GameFieldSize);
-                apple.Y = random.Next(0, GameFieldSize);
+                apple = new Point(random.Next(0, GameFieldSize), random.Next(0, GameFieldSize));
+                while (snakeBodyParts.Contains(apple))
+                {
+                    apple = new Point(random.Next(0, GameFieldSize), random.Next(0, GameFieldSize));
+                }
             }
             else
-            {
-                snakeBodyParts.Insert(0, snakeHead);
                 snakeBodyParts.RemoveAt(snakeBodyParts.Count - 1);
-            }
 
+            snakeBodyParts.Insert(0, snakeHead);
             pictureBox1.Refresh();
         }
+
         void Defeat()
         {
             timer1.Stop();
             MessageBox.Show("Game Over");
-
-
-            snakeDirection = Keys.A;
-            snakeHead.X = GameFieldSize / 2;
-            snakeHead.Y = GameFieldSize / 2;
             snakeBodyParts.Clear();
-            snakeBodyParts.Add(snakeHead);
+            Restart();
             timer1.Start();
+        }
+
+        void Restart()
+        {
+            snakeDirection = Keys.A;
+            apple = new Point(random.Next(0, GameFieldSize), random.Next(0, GameFieldSize));
+            snakeHead = new Point(GameFieldSize / 2, GameFieldSize / 2);
+            snakeBodyParts.Add(snakeHead);
         }
     }
 }
+
+
