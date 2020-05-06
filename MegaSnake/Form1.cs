@@ -19,7 +19,6 @@ namespace MegaSnake
         Keys snakeDirection;
         List<Point> snakeBodyParts;
 
-
         public Form1()
         {
             InitializeComponent();
@@ -30,8 +29,6 @@ namespace MegaSnake
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-
-
             if (snakeBodyParts.Count > 0)
             {
                 if (e.KeyCode == Keys.Down && snakeDirection == Keys.Up)
@@ -64,27 +61,21 @@ namespace MegaSnake
             foreach (Point bodyPart in snakeBodyParts)
                 e.Graphics.FillRectangle(Brushes.Green, bodyPart.X * CellSize, bodyPart.Y * CellSize, CellSize, CellSize);
 
-            e.Graphics.FillRectangle(Brushes.Chocolate, apple.X * CellSize, apple.Y * CellSize, CellSize, CellSize);
             e.Graphics.FillRectangle(Brushes.Red, snakeHead.X * CellSize, snakeHead.Y * CellSize, CellSize, CellSize);
+
+            e.Graphics.FillRectangle(Brushes.Chocolate, apple.X * CellSize, apple.Y * CellSize, CellSize, CellSize);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
-
             if (snakeDirection == Keys.Up)
                 snakeHead.Y--;
-
             if (snakeDirection == Keys.Down)
                 snakeHead.Y++;
-
             if (snakeDirection == Keys.Left)
                 snakeHead.X--;
-
             if (snakeDirection == Keys.Right)
                 snakeHead.X++;
-
-
 
             if (snakeHead.Y < 0 ||
                 snakeHead.X < 0 ||
@@ -104,11 +95,12 @@ namespace MegaSnake
 
             if (snakeHead == apple)
             {
-                apple = new Point(random.Next(0, GameFieldSize), random.Next(0, GameFieldSize));
-                while (snakeBodyParts.Contains(apple))
+                do
                 {
                     apple = new Point(random.Next(0, GameFieldSize), random.Next(0, GameFieldSize));
                 }
+                while (snakeBodyParts.Contains(apple));
+
             }
             else
                 snakeBodyParts.RemoveAt(snakeBodyParts.Count - 1);
@@ -121,7 +113,6 @@ namespace MegaSnake
         {
             timer1.Stop();
             MessageBox.Show("Game Over");
-            snakeBodyParts.Clear();
             Restart();
             timer1.Start();
         }
@@ -131,6 +122,7 @@ namespace MegaSnake
             snakeDirection = Keys.A;
             apple = new Point(random.Next(0, GameFieldSize), random.Next(0, GameFieldSize));
             snakeHead = new Point(GameFieldSize / 2, GameFieldSize / 2);
+            snakeBodyParts.Clear();
             snakeBodyParts.Add(snakeHead);
         }
     }
