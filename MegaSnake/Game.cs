@@ -42,27 +42,25 @@ namespace MegaSnake
             snakeDirection = Keys.A;
         }
 
-        public Keys SnakesDirection(Keys key)
+        public void SnakesDirection(Keys key)
         {
             if (key == Keys.Down ||
             key == Keys.Up ||
             key == Keys.Right ||
             key == Keys.Left)
-           snakeDirection = key;
+                snakeDirection = key;
 
             if (snakeBodyParts.Count > 0)
             {
                 if (key == Keys.Down && snakeDirection == Keys.Up)
-                    return Keys.None;
+                    return;
                 if (key == Keys.Up && snakeDirection == Keys.Down)
-                    return Keys.None;
+                    return;
                 if (key == Keys.Right && snakeDirection == Keys.Left)
-                    return Keys.None;
+                    return;
                 if (key == Keys.Left && snakeDirection == Keys.Right)
-                    return Keys.None;
+                    return;
             }
-
-            return snakeDirection;
         }
 
         public void Update(Keys key)

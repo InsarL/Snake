@@ -16,7 +16,7 @@ namespace MegaSnake
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            game.SnakesDirection(Keys.KeyCode);
+            game.SnakesDirection(e.KeyCode);
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -28,6 +28,7 @@ namespace MegaSnake
         {
             game.Update(Keys.KeyCode);
             pictureBox1.Refresh();
+            
         }
 
         void OnDefeat()
